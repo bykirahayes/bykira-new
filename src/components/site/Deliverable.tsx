@@ -45,7 +45,7 @@ export function Deliverable() {
         {/* document preview */}
         <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7 lg:pt-20">
           <div className="relative">
-            <div className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-2xl border border-line bg-surface" aria-hidden />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] translate-x-4 translate-y-4 rotate-2 rounded-2xl border border-line bg-surface" aria-hidden />
             <figure className="relative rounded-2xl bg-paper p-6 text-paper-foreground shadow-[var(--shadow-panel)] md:p-8">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2 font-mono text-xs"><FileText className="h-4 w-4" /> operations-map.pdf</span>
