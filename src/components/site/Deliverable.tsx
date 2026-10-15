@@ -59,11 +59,11 @@ export function Deliverable() {
                 ))}
               </svg>
               <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-                <div className="rounded-lg border border-current/10 p-3" style={{ borderColor: "color-mix(in oklab, var(--leak) 50%, transparent)" }}>
-                  <p className="font-mono uppercase tracking-wider" style={{ color: "oklch(0.55 0.13 50)" }}>Bottleneck</p>
+                <div className="rounded-lg border border-leak/60 p-3">
+                  <p className="font-mono uppercase tracking-wider opacity-70">Bottleneck</p>
                   <p className="mt-1">Times agreed over four DMs</p>
                 </div>
-                <div className="rounded-lg border p-3" style={{ borderColor: "color-mix(in oklab, var(--primary) 50%, transparent)" }}>
+                <div className="rounded-lg border border-primary/50 p-3">
                   <p className="font-mono uppercase tracking-wider text-primary">Improve</p>
                   <p className="mt-1">Booking link with live slots</p>
                 </div>
