@@ -12,7 +12,7 @@ const OUTPUTS = [
 
 export function Deliverable() {
   return (
-    <section id="what-you-get" className="relative py-24 md:py-36">
+    <section id="what-you-get" className="relative overflow-hidden py-24 md:py-36">
       <div className="blob left-1/3 top-1/3 h-[380px] w-[380px] bg-primary/12" aria-hidden />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-5 md:px-8 lg:grid-cols-12">
         <div className="lg:col-span-5">
