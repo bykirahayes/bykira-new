@@ -63,3 +63,12 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+
+## Website preview
+
+View the rendered website at **https://bykirahayes.github.io/bykira-new/**.
+
+The GitHub Actions workflow prerenders this project and places the finished HTML,
+JavaScript and CSS in the current GitHub Pages branch root. Source code remains
+in `src/`, and animations remain unchanged.
