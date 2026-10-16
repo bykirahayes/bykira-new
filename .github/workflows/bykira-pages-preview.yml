@@ -28,8 +28,11 @@ jobs:
       # A branch-root Pages export includes index.html. TanStack Start must
       # generate its OWN renderer template, rather than picking up that export.
       # Remove the published HTML only in this short-lived build workspace.
-      - name: Isolate the published HTML from the source build
-        run: rm -f index.html 404.html
+      - name: Isolate published static assets from the source build
+        # Nitro crawls repository-root assets while bundling; including a
+        # previously-minified CSS output here makes Lightning CSS fail.
+        # These deletions are only in the disposable Actions runner.
+        run: rm -f index.html 404.html && rm -rf assets
       - name: Prerender the ByKira site for GitHub Pages
         env:
           BYKIRA_GITHUB_PAGES: "true"
