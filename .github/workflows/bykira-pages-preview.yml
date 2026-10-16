@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -50,6 +50,24 @@ jobs:
           cp _site/index.html _site/404.html
           echo "Site files:"
           find _site -maxdepth 2 -type f | head -40
+      # GitHub Pages is currently configured to publish from this branch's
+      # repository root (not from workflow artifacts). Put the real prerendered
+      # site there, so Pages serves the app instead of rendering README.md.
+      # GitHub's GITHUB_TOKEN writes do not trigger another workflow run.
+      - name: Sync the prerendered website to the Pages branch root
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -a _site/. .
+          git add -f index.html 404.html .nojekyll assets/
+          if git diff --cached --quiet; then
+            echo "Static website files are already up to date."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "build: publish rendered ByKira website to Pages source"
+            git push origin "HEAD:design/editorial-studio-refresh"
+          fi
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
