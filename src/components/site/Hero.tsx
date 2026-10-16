@@ -31,6 +31,8 @@ export function Hero() {
       style={{ background: "radial-gradient(500px circle at var(--mx, 70%) var(--my, 30%), color-mix(in oklab, var(--primary) 9%, transparent), transparent 60%)" }}
     >
       <div className="dot-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)]" aria-hidden />
+      <div className="starfield absolute inset-0" aria-hidden />
+      <div className="orbit pointer-events-none absolute -right-24 top-16 hidden h-[620px] w-[620px] lg:block" aria-hidden><span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lilac shadow-[var(--glow-primary)]" /></div>
       <div className="blob -right-40 top-10 h-[420px] w-[420px] bg-primary/20" aria-hidden />
       <div className="blob -left-40 bottom-0 h-[300px] w-[300px] bg-lilac/10" aria-hidden />
 
@@ -45,7 +47,7 @@ export function Hero() {
             <br />
             we trace how your
             <br />
-            business <em className="text-lilac">actually runs.</em>
+            business <em className="relative text-lilac">actually runs.<svg viewBox="0 0 300 20" className="absolute -bottom-2 left-0 w-full text-leak" aria-hidden><path d="M4 14 C 80 4, 200 4, 296 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></em>
           </motion.h1>
           <motion.p {...fade(0.16)} className="mt-7 max-w-md text-lg leading-relaxed text-muted-foreground">
             One call. One customer journey. We find the slow handoffs, the repetitive admin, and what could work better.
