@@ -1,6 +1,6 @@
 import { useRef, useState, type MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { StepId } from "@/lib/site";
 import { OpsMap } from "./OpsMap";
@@ -59,9 +59,9 @@ export function Hero() {
             </Button>
           </motion.div>
           <motion.ul {...fade(0.32)} className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            {["45-minute call", "A map within 48 hours", "Yours to keep"].map((t) => (
+            {["100% free", "No obligation", "A real operations map"].map((t) => (
               <li key={t} className="flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-lilac" aria-hidden />
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/25 text-lilac" aria-hidden><Check className="h-3 w-3" /></span>
                 {t}
               </li>
             ))}
@@ -75,6 +75,9 @@ export function Hero() {
           className="relative lg:-mr-6"
         >
           <OpsMap active={active} onSelect={setActive} />
+          <Annotation className="absolute -left-4 -top-14 hidden rotate-[-6deg] lg:block">
+            Find leaks. Get fixes.<br />Keep the map. ↘
+          </Annotation>
           <Annotation className="absolute -bottom-10 right-2 hidden rotate-[-3deg] sm:block">
             ↖ tap a stop to see what we look for
           </Annotation>
