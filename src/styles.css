@@ -203,3 +203,23 @@
     display: none !important;
   }
 }
+
+@utility starfield {
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, oklch(1 0 0 / 70%), transparent),
+    radial-gradient(1px 1px at 34% 72%, oklch(1 0 0 / 50%), transparent),
+    radial-gradient(1.5px 1.5px at 58% 12%, var(--lilac), transparent),
+    radial-gradient(1px 1px at 76% 64%, oklch(1 0 0 / 60%), transparent),
+    radial-gradient(1.5px 1.5px at 90% 28%, oklch(1 0 0 / 80%), transparent),
+    radial-gradient(1px 1px at 22% 48%, var(--lilac), transparent),
+    radial-gradient(1px 1px at 66% 88%, oklch(1 0 0 / 50%), transparent);
+  background-size: 420px 420px;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: 0.35; } to { opacity: 0.9; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@utility orbit {
+  border: 1px dashed color-mix(in oklab, var(--lilac) 35%, transparent);
+  border-radius: 9999px;
+  animation: spin-slow 60s linear infinite;
+}
