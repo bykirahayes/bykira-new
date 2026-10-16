@@ -65,7 +65,7 @@ export function Tag({ children, tone = "neutral" }: { children: ReactNode; tone?
 /** Handwritten-ish marginal note */
 export function Annotation({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <p className={cn("font-display text-lg italic text-muted-foreground", className)}>
+    <p className={cn("font-script text-xl leading-tight text-lilac/90", className)}>
       {children}
     </p>
   );

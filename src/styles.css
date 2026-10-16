@@ -8,6 +8,7 @@
   --font-display: "Instrument Serif", "Times New Roman", serif;
   --font-sans: "Manrope", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-script: "Caveat", cursive;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -44,17 +45,17 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.15 0.008 285);
+  --background: oklch(0.14 0.03 268);
   --foreground: oklch(0.96 0.01 70);
-  --card: oklch(0.19 0.01 285);
+  --card: oklch(0.19 0.04 268);
   --card-foreground: oklch(0.96 0.01 70);
-  --popover: oklch(0.18 0.01 285);
+  --popover: oklch(0.18 0.035 268);
   --popover-foreground: oklch(0.96 0.01 70);
-  --primary: oklch(0.6 0.2 273);
+  --primary: oklch(0.58 0.24 265);
   --primary-foreground: oklch(0.98 0.005 70);
-  --secondary: oklch(0.22 0.012 285);
+  --secondary: oklch(0.22 0.04 268);
   --secondary-foreground: oklch(0.96 0.01 70);
-  --muted: oklch(0.21 0.01 285);
+  --muted: oklch(0.21 0.035 268);
   --muted-foreground: oklch(0.74 0.015 70);
   --accent: oklch(0.24 0.02 280);
   --accent-foreground: oklch(0.96 0.01 70);
@@ -62,9 +63,9 @@
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.76 0.11 283);
-  --lilac: oklch(0.76 0.11 283);
-  --leak: oklch(0.76 0.12 55);
+  --ring: oklch(0.72 0.17 275);
+  --lilac: oklch(0.72 0.17 275);
+  --leak: oklch(0.72 0.18 48);
   --line: oklch(1 0 0 / 8%);
   --surface: oklch(1 0 0 / 3.5%);
   --paper: oklch(0.95 0.012 75);
@@ -85,6 +86,8 @@
   }
   body {
     background-color: var(--color-background);
+    background-image: radial-gradient(1200px 700px at 85% -10%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%), radial-gradient(900px 600px at -10% 30%, color-mix(in oklab, var(--lilac) 10%, transparent), transparent 60%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     overflow-x: clip;
