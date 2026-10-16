@@ -37,12 +37,13 @@ export function Hero() {
       <div className="blob -left-40 bottom-0 h-[300px] w-[300px] bg-lilac/10" aria-hidden />
 
       <div className="relative mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[1.25fr_1fr] lg:items-center lg:gap-10">
-        <div>
+        <div className="hero-copy">
+          <p className="hero-fieldnote" aria-hidden="true">ByKira / fieldwork series &nbsp;—&nbsp; No. 001</p>
           <motion.p {...fade(0)} className="label-mono inline-flex items-center gap-2.5 rounded-full border border-foreground/12 bg-surface px-3.5 py-2 text-foreground">
             <span className="status-ring h-2 w-2 rounded-full bg-lilac" aria-hidden />
             Free operations audit
           </motion.p>
-          <motion.h1 {...fade(0.08)} className="mt-7 font-display text-[2.7rem] leading-[0.98] tracking-tight sm:text-6xl lg:text-[5.4rem]">
+          <motion.h1 {...fade(0.08)} className="hero-display mt-7 font-display text-[2.7rem] leading-[0.98] tracking-tight sm:text-6xl lg:text-[5.4rem]">
             Before we build,
             <br />
             we trace how your
@@ -84,6 +85,11 @@ export function Hero() {
             ↖ tap a stop to see what we look for
           </Annotation>
         </motion.div>
+      </div>
+      <div className="hero-footer-rule relative mx-auto mt-20 max-w-7xl px-5 md:px-8" aria-hidden="true">
+        <span>Observe what happens</span>
+        <span className="hero-footer-track" />
+        <span>Then make it better / BK—001</span>
       </div>
     </section>
   );
