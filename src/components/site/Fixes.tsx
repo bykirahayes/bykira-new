@@ -5,7 +5,7 @@ import { Eyebrow, Reveal, Tag } from "./primitives";
 
 function Panel({ tone, title, children, className }: { tone: "leak" | "fix"; title: string; children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("glass flex flex-col rounded-3xl p-5 md:p-6", className)}>
+    <div className={cn("glass studio-case flex flex-col rounded-3xl p-5 md:p-6", tone === "leak" ? "studio-case--leak" : "studio-case--fix", className)}>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
         <Tag tone={tone}>{tone === "leak" ? "● Before" : "→ Better"}</Tag>
         <span className="label-mono !text-[0.6rem] text-muted-foreground">Illustrative UI</span>
@@ -122,10 +122,11 @@ function Confirmed() {
 export function Fixes() {
   return (
     <section className="relative border-t border-line py-24 md:py-36" aria-labelledby="fixes-h">
+      <span className="studio-index" aria-hidden="true">04 / Prototype</span>
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal className="max-w-3xl">
           <Eyebrow n="04">Examples</Eyebrow>
-          <h2 id="fixes-h" className="mt-6 font-display text-5xl leading-[1] tracking-tight md:text-7xl">
+          <h2 id="fixes-h" className="studio-section-heading mt-6 font-display text-5xl leading-[1] tracking-tight md:text-7xl">
             Small fixes. <em className="text-lilac">Less friction.</em>
           </h2>
           <p className="mt-6 max-w-lg text-muted-foreground">Most improvements aren't dramatic. They're the kind of thing you stop noticing because it just works. Have a play.</p>

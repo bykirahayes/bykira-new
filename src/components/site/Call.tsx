@@ -11,12 +11,13 @@ const OUTLINE = [
 export function Call() {
   return (
     <section id="approach" className="relative border-y border-line py-24 md:py-36">
+      <span className="studio-index" aria-hidden="true">02 / Listen</span>
       <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-10 md:grid-cols-12">
           <Reveal className="md:col-span-5">
             <Eyebrow n="02">The approach</Eyebrow>
-            <h2 className="mt-6 font-display text-6xl leading-[0.95] tracking-tight md:text-8xl">
+            <h2 className="studio-section-heading mt-6 font-display text-6xl leading-[0.95] tracking-tight md:text-8xl">
               45 minutes.
               <br />
               <em className="text-lilac">One call.</em>
