@@ -27,10 +27,12 @@ export function EndCTA() {
   const { open } = useAudit();
   return (
     <footer id="contact" className="relative overflow-hidden border-t border-line pt-24 md:pt-36">
+      <span className="studio-index" aria-hidden="true">05 / Next steps</span>
       <div className="dot-grid absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden />
       <div className="blob -right-20 top-20 h-[460px] w-[460px] bg-primary/20" aria-hidden />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-5 md:px-8 lg:grid-cols-12">
         <Reveal className="lg:col-span-7">
+          <span className="studio-legend mb-7">Think first. Build the right thing.</span>
           <h2 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-8xl">
             No obligation.
             <br />
