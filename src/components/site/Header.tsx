@@ -49,9 +49,12 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-        <a href="#top" aria-label="ByKira, back to top" className="flex min-h-11 items-center">
-          <Wordmark />
-        </a>
+        <div className="flex items-center gap-5">
+          <a href="#top" aria-label="ByKira, back to top" className="flex min-h-11 items-center">
+            <Wordmark />
+          </a>
+          <span className="studio-nav-note hidden lg:block">Sites &amp; systems<br />made with intention.</span>
+        </div>
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {NAV.map((n) => (
