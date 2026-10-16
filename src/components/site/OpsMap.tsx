@@ -29,10 +29,10 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
   };
 
   return (
-    <div className="glass relative overflow-hidden rounded-2xl">
+    <div className="glass study-frame relative overflow-hidden rounded-2xl">
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
         <span className="font-display text-lg leading-none">ByKira<span className="text-lilac">✦</span></span>
-        <span className="label-mono hidden text-muted-foreground sm:inline">operations-map / sample</span>
+        <span className="label-mono hidden text-muted-foreground sm:inline">field study / customer flow</span>
         <Tag>Example</Tag>
       </div>
 
