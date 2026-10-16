@@ -15,7 +15,7 @@ export function Star({ className }: { className?: string }) {
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-start font-display text-2xl leading-none tracking-tight", className)}>
+    <span className={cn("studio-wordmark inline-flex items-start font-display text-2xl leading-none tracking-tight", className)}>
       ByKira
       <Star className="ml-0.5 mt-0.5 h-2.5 w-2.5 text-lilac" />
     </span>
