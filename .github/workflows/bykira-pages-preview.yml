@@ -1,0 +1,69 @@
+name: ByKira design preview (GitHub Pages)
+
+on:
+  push:
+    branches:
+      - design/editorial-studio-refresh
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "bykira-pages-preview"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the design-preview branch
+        uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Prerender the ByKira site for GitHub Pages
+        env:
+          BYKIRA_GITHUB_PAGES: "true"
+        run: bun run build
+      - name: Package the static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          if [[ -f .output/public/index.html ]]; then
+            cp -a .output/public/. _site/
+          elif [[ -f dist/client/index.html ]]; then
+            cp -a dist/client/. _site/
+          elif [[ -f dist/index.html ]]; then
+            cp -a dist/. _site/
+          else
+            echo "::error::Build completed without a prerendered index.html for static hosting."
+            find .output dist -maxdepth 3 -type f 2>/dev/null | head -50 || true
+            exit 1
+          fi
+          test -s _site/index.html
+          touch _site/.nojekyll
+          cp _site/index.html _site/404.html
+          echo "Site files:"
+          find _site -maxdepth 2 -type f | head -40
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy preview to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
