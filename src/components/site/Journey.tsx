@@ -7,7 +7,7 @@ import { Eyebrow, Reveal, Tag, Annotation } from "./primitives";
 export function Journey() {
   const [active, setActive] = useState<StepId>("inquiry");
   const idx = JOURNEY.findIndex((s) => s.id === active);
-  const step = JOURNEY[idx];
+  const step = JOURNEY[idx]!;
 
   const onKey = (e: KeyboardEvent) => {
     const k = e.key;
@@ -16,8 +16,8 @@ export function Journey() {
     else if (k === "ArrowUp" || k === "ArrowLeft") n = (idx + 3) % 4;
     else return;
     e.preventDefault();
-    setActive(JOURNEY[n].id);
-    document.getElementById(`jtab-${JOURNEY[n].id}`)?.focus();
+    setActive(JOURNEY[n]!.id);
+    document.getElementById(`jtab-${JOURNEY[n]!.id}`)?.focus();
   };
 
   return (

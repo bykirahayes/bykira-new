@@ -1,17 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, CalendarCheck, CreditCard, FileText, AlertCircle, Settings2, ArrowRight } from "lucide-react";
 import { JOURNEY, type StepId } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Tag } from "./primitives";
 import type { KeyboardEvent } from "react";
 
-// Positions in a 400x320 viewBox
-const POS: Record<StepId, { x: number; y: number }> = {
-  inquiry: { x: 60, y: 70 },
-  booking: { x: 300, y: 95 },
-  payment: { x: 110, y: 215 },
-  records: { x: 330, y: 255 },
+const ICONS: Record<StepId, typeof MessageCircle> = {
+  inquiry: MessageCircle,
+  booking: CalendarCheck,
+  payment: CreditCard,
+  records: FileText,
 };
-const PATH = "M60 70 C 160 20, 220 140, 300 95 S 380 160, 250 170 S 40 160, 110 215 S 260 300, 330 255";
+// tile vertical offsets (staggered, like a 3D board)
+const OFFSET = ["mt-10", "mt-14", "mt-12", "mt-16"];
 
 export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: StepId) => void }) {
   const step = JOURNEY.find((s) => s.id === active)!;
@@ -20,38 +21,50 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
   const onKey = (e: KeyboardEvent) => {
     if (["ArrowRight", "ArrowDown"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 1) % 4].id);
+      onSelect(JOURNEY[(idx + 1) % 4]!.id);
     } else if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 3) % 4].id);
+      onSelect(JOURNEY[(idx + 3) % 4]!.id);
     }
   };
 
   return (
     <div className="glass relative overflow-hidden rounded-2xl">
-      {/* window chrome */}
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-        </div>
-        <span className="label-mono text-muted-foreground">operations-map / sample</span>
+        <span className="font-display text-lg leading-none">ByKira<span className="text-lilac">✦</span></span>
+        <span className="label-mono hidden text-muted-foreground sm:inline">operations-map / sample</span>
         <Tag>Example</Tag>
       </div>
 
-      <div className="dot-grid relative">
-        <svg viewBox="0 0 400 320" className="block w-full" role="img" aria-label="Customer journey line from Inquiry through Booking and Payment to Records">
-          <path d={PATH} fill="none" stroke="var(--line)" strokeWidth="10" strokeLinecap="round" />
-          <path d={PATH} fill="none" stroke="var(--lilac)" strokeWidth="1.5" className="dash-flow" strokeLinecap="round" />
-          {/* orbital rings */}
-          <circle cx={POS[active].x} cy={POS[active].y} r="26" fill="none" stroke="var(--primary)" strokeOpacity=".5" strokeDasharray="1 4" />
-          <circle cx={POS[active].x} cy={POS[active].y} r="40" fill="none" stroke="var(--primary)" strokeOpacity=".2" />
+      <div className="dot-grid relative px-3 pb-6 pt-4 sm:px-5">
+        {/* journey line */}
+        <svg viewBox="0 0 400 60" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-3 top-6 h-16 w-[calc(100%-1.5rem)]" aria-hidden>
+          <path d="M20 45 C 70 10, 110 10, 150 30 S 230 55, 260 25 S 340 10, 385 40" fill="none" stroke="var(--primary)" strokeOpacity=".35" strokeWidth="6" strokeLinecap="round" />
+          <path d="M20 45 C 70 10, 110 10, 150 30 S 230 55, 260 25 S 340 10, 385 40" fill="none" stroke="var(--leak)" strokeWidth="1.6" className="dash-flow" strokeLinecap="round" />
         </svg>
 
-        <div role="tablist" aria-label="Journey milestones" className="absolute inset-0" onKeyDown={onKey}>
-          {JOURNEY.map((s) => {
-            const p = POS[s.id];
+        {/* floating leak callout */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="absolute top-2 z-10 hidden items-start gap-2 rounded-lg border border-leak/50 bg-background/80 px-2.5 py-1.5 shadow-[0_0_24px_-6px_var(--leak)] backdrop-blur sm:flex"
+            style={{ left: `${8 + idx * 22}%` }}
+          >
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-leak" />
+            <div>
+              <p className="label-mono !text-[0.55rem] text-leak">Leak</p>
+              <p className="text-xs text-foreground">{step.friction}</p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div role="tablist" aria-label="Journey milestones" className="relative grid grid-cols-4 gap-2 sm:gap-3" onKeyDown={onKey}>
+          {JOURNEY.map((s, i) => {
+            const Icon = ICONS[s.id];
             const on = s.id === active;
             return (
               <button
@@ -61,51 +74,43 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
                 aria-controls="hero-map-panel"
                 tabIndex={on ? 0 : -1}
                 onClick={() => onSelect(s.id)}
-                className="group absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5 p-1"
-                style={{ left: `${(p.x / 400) * 100}%`, top: `${(p.y / 320) * 100}%` }}
+                className={cn(
+                  "group flex flex-col items-center gap-2 rounded-xl border px-1 py-4 transition-all duration-300 sm:py-5",
+                  OFFSET[i],
+                  on
+                    ? "-translate-y-1 border-primary/70 bg-primary/15 shadow-[var(--glow-primary)]"
+                    : "border-foreground/12 bg-card/70 hover:border-lilac/50",
+                )}
               >
-                <span
-                  className={cn(
-                    "flex h-9 w-9 items-center justify-center rounded-full border font-mono text-[0.65rem] transition-all duration-200",
-                    on ? "border-primary bg-primary text-primary-foreground shadow-[var(--glow-primary)]" : "border-foreground/25 bg-background text-muted-foreground group-hover:border-lilac",
-                  )}
-                >
-                  {s.n}
+                <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg", on ? "text-lilac" : "text-muted-foreground group-hover:text-foreground")}>
+                  <Icon className="h-6 w-6" strokeWidth={1.6} />
                 </span>
-                <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium backdrop-blur", on ? "bg-foreground/10 text-foreground" : "text-muted-foreground")}>
-                  {s.label}
-                </span>
+                <span className={cn("text-[0.7rem] font-semibold sm:text-sm", on ? "text-foreground" : "text-muted-foreground")}>{s.label}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      <div id="hero-map-panel" role="tabpanel" aria-live="polite" className="grid gap-3 border-t border-line p-4 sm:grid-cols-2">
+      <div id="hero-map-panel" role="tabpanel" aria-live="polite" className="border-t border-line p-4">
         <AnimatePresence mode="wait">
           <motion.div
-            key={active + "l"}
+            key={active}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.22 }}
-            className="rounded-xl border border-leak/25 bg-leak/5 p-3"
+            className="flex items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 p-3"
           >
-            <Tag tone="leak">● Leak</Tag>
-            <p className="mt-2 text-sm text-foreground">{step.friction}</p>
-          </motion.div>
-        </AnimatePresence>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active + "r"}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.22, delay: 0.05 }}
-            className="rounded-xl border border-primary/30 bg-primary/10 p-3"
-          >
-            <Tag tone="fix">→ Better</Tag>
-            <p className="mt-2 text-sm text-foreground">{step.improvement}</p>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--glow-primary)]">
+              <Settings2 className="h-5 w-5" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="label-mono !text-[0.58rem] text-lilac">Suggested fix</p>
+              <p className="text-sm text-foreground">{step.improvement}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground sm:hidden">Leak: {step.friction}</p>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
           </motion.div>
         </AnimatePresence>
       </div>
