@@ -21,10 +21,10 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
   const onKey = (e: KeyboardEvent) => {
     if (["ArrowRight", "ArrowDown"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 1) % 4].id);
+      onSelect(JOURNEY[(idx + 1) % 4]!.id);
     } else if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 3) % 4].id);
+      onSelect(JOURNEY[(idx + 3) % 4]!.id);
     }
   };
 
