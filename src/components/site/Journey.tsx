@@ -16,8 +16,8 @@ export function Journey() {
     else if (k === "ArrowUp" || k === "ArrowLeft") n = (idx + 3) % 4;
     else return;
     e.preventDefault();
-    setActive(JOURNEY[n].id);
-    document.getElementById(`jtab-${JOURNEY[n].id}`)?.focus();
+    setActive(JOURNEY[n]!.id);
+    document.getElementById(`jtab-${JOURNEY[n]!.id}`)?.focus();
   };
 
   return (
