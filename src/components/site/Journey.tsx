@@ -22,11 +22,12 @@ export function Journey() {
 
   return (
     <section id="work" className="relative py-24 md:py-36">
+      <span className="studio-index" aria-hidden="true">01 / Explore</span>
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-6 md:grid-cols-12">
           <Reveal className="md:col-span-7">
             <Eyebrow n="01">The journey</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-[1] tracking-tight md:text-7xl">
+            <h2 className="studio-section-heading mt-6 font-display text-5xl leading-[1] tracking-tight md:text-7xl">
               Follow one customer.
               <br />
               <em className="text-muted-foreground">Find the friction.</em>
@@ -85,7 +86,7 @@ export function Journey() {
 
           {/* diagnostic panel */}
           <div id="journey-panel" role="tabpanel" aria-labelledby={`jtab-${active}`} className="lg:col-span-7">
-            <div className="glass relative overflow-hidden rounded-3xl">
+            <div className="glass studio-diagnostic relative overflow-hidden rounded-3xl">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-6 py-4">
                 <span className="label-mono text-muted-foreground">Diagnostic / stop {step.n} of 04</span>
                 <Tag>Example audit</Tag>
