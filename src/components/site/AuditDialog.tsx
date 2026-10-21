@@ -64,7 +64,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
         <DialogHeader>
           <p className="label-mono text-lilac">Free operations audit</p>
           <DialogTitle className="font-display text-4xl font-normal">Request your audit</DialogTitle>
-          <DialogDescription>Tell us a little about how things run. We'll suggest a time for the call.</DialogDescription>
+          <DialogDescription>Prepare a request to copy or open in your email app. This form does not send or book an audit automatically.</DialogDescription>
         </DialogHeader>
 
         {!ready ? (
@@ -73,6 +73,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
             {field("email", "Email", <Input {...aria("email")} type="email" value={form.email} onChange={set("email")} autoComplete="email" />)}
             {field("business", "Business", <Input {...aria("business")} value={form.business} onChange={set("business")} autoComplete="organization" />)}
             {field("description", "What feels slow or repetitive?", <Textarea {...aria("description")} rows={4} value={form.description} onChange={set("description")} />)}
+            <p className="text-xs leading-relaxed text-muted-foreground">Your details stay in this page until you choose to copy or email them. Nothing is submitted to ByKira when you press the button below. See Privacy &amp; cookies in the footer.</p>
             <Button type="submit" variant="pill" size="xl" className="w-full">Prepare my request</Button>
           </form>
         ) : (

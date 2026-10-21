@@ -21,10 +21,14 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
   const onKey = (e: KeyboardEvent) => {
     if (["ArrowRight", "ArrowDown"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 1) % 4]!.id);
+      const next = JOURNEY[(idx + 1) % 4]!.id;
+      onSelect(next);
+      document.getElementById(`hero-tab-${next}`)?.focus();
     } else if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
       e.preventDefault();
-      onSelect(JOURNEY[(idx + 3) % 4]!.id);
+      const next = JOURNEY[(idx + 3) % 4]!.id;
+      onSelect(next);
+      document.getElementById(`hero-tab-${next}`)?.focus();
     }
   };
 
@@ -69,6 +73,7 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
             return (
               <button
                 key={s.id}
+                id={`hero-tab-${s.id}`}
                 role="tab"
                 aria-selected={on}
                 aria-controls="hero-map-panel"
@@ -92,7 +97,7 @@ export function OpsMap({ active, onSelect }: { active: StepId; onSelect: (id: St
         </div>
       </div>
 
-      <div id="hero-map-panel" role="tabpanel" aria-live="polite" className="border-t border-line p-4">
+      <div id="hero-map-panel" role="tabpanel" aria-labelledby={`hero-tab-${active}`} aria-live="polite" className="border-t border-line p-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}

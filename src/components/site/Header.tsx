@@ -82,7 +82,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <Button variant="pill" className="hidden h-10 px-5 sm:inline-flex" onClick={open}>
-            Book a free audit
+            Request a free audit
           </Button>
           <button
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line md:hidden"
@@ -121,7 +121,7 @@ export function Header() {
               ))}
               <li className="pt-4">
                 <Button variant="pill" size="xl" className="w-full" onClick={() => { setMenu(false); open(); }}>
-                  Book a free audit
+                  Request a free audit
                 </Button>
               </li>
             </ul>

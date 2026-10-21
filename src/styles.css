@@ -41,38 +41,50 @@
   --color-surface: var(--surface);
   --color-paper: var(--paper);
   --color-paper-foreground: var(--paper-foreground);
+  --color-deep-purple: var(--deep-purple);
+  --color-neon-lilac: var(--neon-lilac);
 }
 
 :root {
+  /* ByKira / official six-colour brand palette */
   --radius: 0.75rem;
-  --background: oklch(0.135 0.014 270);
-  --foreground: oklch(0.96 0.01 70);
-  --card: oklch(0.18 0.018 272);
-  --card-foreground: oklch(0.96 0.01 70);
-  --popover: oklch(0.18 0.018 272);
-  --popover-foreground: oklch(0.96 0.01 70);
-  --primary: oklch(0.555 0.20 269);
-  --primary-foreground: oklch(0.98 0.005 70);
-  --secondary: oklch(0.22 0.02 272);
-  --secondary-foreground: oklch(0.96 0.01 70);
-  --muted: oklch(0.215 0.017 272);
-  --muted-foreground: oklch(0.74 0.015 70);
-  --accent: oklch(0.24 0.02 280);
-  --accent-foreground: oklch(0.96 0.01 70);
-  --destructive: oklch(0.65 0.2 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.8 0.11 298);
-  --lilac: oklch(0.8 0.11 298);
-  --leak: oklch(0.77 0.145 60);
-  --line: oklch(1 0 0 / 8%);
-  --surface: oklch(1 0 0 / 3.5%);
-  --paper: oklch(0.95 0.024 84);
-  --paper-foreground: oklch(0.2 0.01 285);
-  --glow-primary: 0 0 0 1px color-mix(in oklab, var(--primary) 50%, transparent),
-    0 12px 40px -12px color-mix(in oklab, var(--primary) 70%, transparent);
-  --shadow-panel: 0 30px 80px -30px oklch(0 0 0 / 70%);
+  --obsidian: #08090E;
+  --royal-violet: #8955FF;
+  --deep-purple: #5B2BBF;
+  --neon-lilac: #B18AFF;
+  --ice-white: #F5F5F7;
+  --silver: #A8B0C0;
+
+  /* Semantic colours keep interface contrast predictable. */
+  --background: var(--obsidian);
+  --foreground: var(--ice-white);
+  --card: #151323;
+  --card-foreground: var(--ice-white);
+  --popover: #151323;
+  --popover-foreground: var(--ice-white);
+  --primary: var(--royal-violet);
+  --primary-foreground: var(--obsidian);
+  --secondary: #211830;
+  --secondary-foreground: var(--ice-white);
+  --muted: #1D1929;
+  --muted-foreground: var(--silver);
+  --accent: #26193C;
+  --accent-foreground: var(--ice-white);
+  --destructive: #DF536D;
+  --destructive-foreground: var(--obsidian);
+  --border: rgb(177 138 255 / 17%);
+  --input: rgb(177 138 255 / 24%);
+  --ring: var(--neon-lilac);
+  --lilac: var(--neon-lilac);
+  --leak: var(--royal-violet);
+  --line: rgb(177 138 255 / 12%);
+  --surface: rgb(177 138 255 / 5%);
+  --paper: var(--ice-white);
+  --paper-foreground: var(--obsidian);
+  --glow-primary: 0 0 0 1px rgb(177 138 255 / 30%),
+    0 12px 40px -12px rgb(137 85 255 / 62%),
+    0 0 54px -25px var(--neon-lilac);
+  --shadow-panel: 0 30px 80px -30px rgb(8 9 14 / 92%);
 }
 
 @layer base {
@@ -230,12 +242,12 @@
  * keyframes above remain exactly as they were. */
 :root {
   --studio-hairline: color-mix(in oklab, var(--foreground) 16%, transparent);
-  --studio-amber-wash: color-mix(in oklab, var(--leak) 10%, transparent);
+  --studio-purple-wash: color-mix(in oklab, var(--deep-purple) 18%, transparent);
 }
 body {
   background-image:
     radial-gradient(ellipse 62rem 35rem at 78% -4%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 72%),
-    radial-gradient(ellipse 38rem 25rem at 5% 38%, color-mix(in oklab, var(--leak) 4%, transparent), transparent 73%),
+    radial-gradient(ellipse 38rem 25rem at 5% 38%, color-mix(in oklab, var(--deep-purple) 14%, transparent), transparent 73%),
     linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--foreground) 1.5%, transparent) 50%, transparent 100%);
 }
 .studio-wordmark { letter-spacing: -0.065em; }
@@ -259,7 +271,7 @@ body {
   inset: 0 auto auto -1.25rem;
   width: 1px;
   height: min(16rem, 46%);
-  background: linear-gradient(to bottom, var(--leak), color-mix(in oklab, var(--foreground) 12%, transparent), transparent);
+  background: linear-gradient(to bottom, var(--neon-lilac), color-mix(in oklab, var(--foreground) 12%, transparent), transparent);
   opacity: 0.8;
 }
 .hero-fieldnote {
@@ -278,7 +290,7 @@ body {
   content: "";
   width: 1.25rem;
   height: 1px;
-  background: var(--leak);
+  background: var(--royal-violet);
 }
 .hero-display { text-wrap: balance; }
 .hero-display em {
@@ -372,14 +384,14 @@ body {
   right: 0;
   width: 4.5rem;
   height: 4.5rem;
-  background: repeating-linear-gradient(-45deg, transparent 0 7px, color-mix(in oklab, var(--foreground) 4%, transparent) 7px 8px);
+  background: repeating-linear-gradient(-45deg, transparent 0 7px, color-mix(in oklab, var(--neon-lilac) 8%, transparent) 7px 8px);
   border-bottom-left-radius: 3rem;
   pointer-events: none;
 }
 .studio-case--leak {
-  border-color: color-mix(in oklab, var(--leak) 33%, transparent);
+  border-color: color-mix(in oklab, var(--royal-violet) 45%, transparent);
   background:
-    radial-gradient(circle at 0 0, var(--studio-amber-wash), transparent 56%),
+    radial-gradient(circle at 0 0, var(--studio-purple-wash), transparent 56%),
     color-mix(in oklab, var(--card) 87%, black);
 }
 .studio-case--fix {
@@ -410,7 +422,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 0.6rem 0.75rem;
-  background: color-mix(in oklab, var(--lilac) 8%, transparent);
+  background: color-mix(in oklab, var(--deep-purple) 16%, transparent);
   border-left: 2px solid var(--leak);
   color: var(--foreground);
   font: 500 0.63rem/1.4 "JetBrains Mono", monospace;
@@ -435,4 +447,13 @@ body {
   .studio-paper {
     background-image: repeating-linear-gradient(to bottom, transparent 0 26px, color-mix(in oklab, var(--paper-foreground) 6%, transparent) 27px 28px);
   }
+}
+
+/* Named hues are used for depth and lighting, never body copy on dark panels. */
+.study-frame {
+  background-image: linear-gradient(135deg, rgb(91 43 191 / 10%), transparent 55%);
+}
+@media (prefers-contrast: more) {
+  :focus-visible { outline-width: 3px; }
+  .text-muted-foreground { color: var(--ice-white); }
 }

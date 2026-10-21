@@ -1,5 +1,6 @@
 import { ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PrivacyDialog } from "./PrivacyDialog";
 import { Annotation, Eyebrow, Reveal, Star, Wordmark, useAudit } from "./primitives";
 
 export function About() {
@@ -73,6 +74,7 @@ export function EndCTA() {
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#work">Work</a></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#approach">Approach</a></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#what-you-get">What you get</a></li>
+              <li><PrivacyDialog /></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#top">Back to top ↑</a></li>
             </ul>
           </nav>

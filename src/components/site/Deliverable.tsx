@@ -66,7 +66,7 @@ export function Deliverable() {
                   <p className="mt-1">Times agreed over four DMs</p>
                 </div>
                 <div className="rounded-lg border border-primary/50 p-3">
-                  <p className="font-mono uppercase tracking-wider text-primary">Improve</p>
+                  <p className="font-mono uppercase tracking-wider text-deep-purple">Improve</p>
                   <p className="mt-1">Booking link with live slots</p>
                 </div>
               </div>

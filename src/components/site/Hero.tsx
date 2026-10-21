@@ -55,7 +55,7 @@ export function Hero() {
           </motion.p>
           <motion.div {...fade(0.24)} className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button variant="pill" size="xl" onClick={open}>
-              Book a free audit <ArrowRight />
+              Request a free audit <ArrowRight />
             </Button>
             <Button variant="line" size="xl" asChild>
               <a href="#work">Explore the sample map</a>
