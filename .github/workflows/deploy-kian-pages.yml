@@ -1,4 +1,4 @@
-name: Publish Kian Price portfolio to GitHub Pages
+name: Validate Kian Price portfolio static export
 
 on:
   push:
@@ -7,19 +7,10 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: kian-price-pages
-  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Kian portfolio branch
         uses: actions/checkout@v4
@@ -33,16 +24,13 @@ jobs:
         run: |
           test -f .output/public/index.html
           grep -q "Kian Price" .output/public/index.html
-          cp .output/public/index.html .output/public/404.html
           touch .output/public/.nojekyll
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Save static site for transfer to an independent repository
+        uses: actions/upload-artifact@v4
         with:
-          enablement: true
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
+          name: kian-price-pages-build
           path: .output/public
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+
+# This workflow deliberately NEVER publishes to GitHub Pages.
+# The existing bykira-new GitHub Pages site belongs to ByKira.
+# Create an independent public repository for Kian Price before deploying.
