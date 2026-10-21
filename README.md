@@ -20,18 +20,18 @@ The site uses the Vite base path `/bykira-new/`. If you rename the repository or
 
 ## Local development
 
-Use Node.js 22+.
+Use Bun (tested in the GitHub Actions workflow); Node.js 22+ can also run Vite locally.
 
 ```sh
-npm install
-npm run dev
-npm run typecheck
-npm test
-npm run build
-npm run preview
+bun install
+bun run dev
+bun run typecheck
+bun run test
+bun run build
+bun run preview
 ```
 
-The repo currently installs dependencies with `npm install`, because the old Lovable/Bun lockfile was intentionally removed during the migration. When a clean `package-lock.json` is generated and committed, CI can be changed to `npm ci` for reproducible installs.
+GitHub Actions uses `bun install` and the same scripts. The old Lovable-specific dependency lockfile was removed. Commit a newly generated `bun.lock` after a verified local install if you want frozen, reproducible installs.
 
 ## Features
 

@@ -14,7 +14,7 @@
 - `UK_COMPLIANCE_REVIEW.md` records outstanding legal, accessibility and hosting checks. Do not assert legal compliance without verification.
 
 ## Checks
-- `npm install`
-- `npm run typecheck`
-- `npm test`
-- `npm run build`
+- `bun install`
+- `bun run typecheck`
+- `bun run test`
+- `bun run build`
