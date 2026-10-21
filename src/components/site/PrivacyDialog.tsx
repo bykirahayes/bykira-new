@@ -28,8 +28,8 @@ export function PrivacyDialog() {
           </section>
           <section className="space-y-2">
             <h3 className="font-semibold text-foreground">Cookies and external services</h3>
-            <p>The website application code does not install analytics, advertising or marketing cookies. We have not yet verified whether the hosting platform or preview tools set additional cookies or retain visitor connection logs.</p>
-            <p>This site loads typefaces from Google Fonts, so your browser makes requests to Google servers. Lovable editor previews may additionally report runtime errors. These services need a hosting and data-processing review before launch.</p>
+            <p>The website application code does not install analytics, advertising or marketing cookies. On GitHub Pages, GitHub may process connection and security logs to deliver the website. The live deployment still needs a browser-based cookie and storage check.</p>
+            <p>This site loads typefaces from Google Fonts, so your browser makes requests to Google servers. The site uses GitHub Pages for hosting, which may process technical connection information. Check these providers' current notices before publication.</p>
           </section>
           <section className="space-y-2">
             <h3 className="font-semibold text-foreground">Your information and rights</h3>
