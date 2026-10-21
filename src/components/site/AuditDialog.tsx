@@ -73,7 +73,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
             {field("email", "Email", <Input {...aria("email")} type="email" value={form.email} onChange={set("email")} autoComplete="email" />)}
             {field("business", "Business", <Input {...aria("business")} value={form.business} onChange={set("business")} autoComplete="organization" />)}
             {field("description", "What feels slow or repetitive?", <Textarea {...aria("description")} rows={4} value={form.description} onChange={set("description")} />)}
-            <p className="text-xs leading-relaxed text-muted-foreground">Your details stay in this page until you choose to copy or email them. Nothing is submitted to ByKira when you press the button below. See Privacy &amp; cookies in the footer.</p>
+            <p className="text-xs leading-relaxed text-muted-foreground">Your details stay in this page until you choose to copy or email them. Nothing is submitted to ByKira when you press the button below. Read our <a className="underline text-lilac underline-offset-4" href={`${import.meta.env.BASE_URL}privacy.html`} target="_blank" rel="noopener noreferrer">privacy information (opens in new tab)</a> before copying or sharing personal details. Do not include sensitive personal information.</p>
             <Button type="submit" variant="pill" size="xl" className="w-full">Prepare my request</Button>
           </form>
         ) : (
@@ -86,7 +86,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
                 <p>Online sending isn't connected yet, so nothing has been sent. Copy your enquiry below and keep it handy.</p>
               </div>
             )}
-            <pre className="max-h-48 overflow-auto whitespace-pre-wrap rounded-xl border border-line bg-surface p-4 font-mono text-xs">{ready}</pre>
+            <pre tabIndex={0} className="max-h-48 overflow-auto whitespace-pre-wrap rounded-xl border border-line bg-surface p-4 font-mono text-xs">{ready}</pre>
             <div className="flex flex-col gap-2 sm:flex-row">
               <Button variant="line" size="xl" className="flex-1" onClick={copy}><Copy /> Copy enquiry</Button>
               {CONTACT_EMAIL && (

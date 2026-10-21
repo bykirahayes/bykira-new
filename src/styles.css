@@ -457,3 +457,106 @@ body {
   :focus-visible { outline-width: 3px; }
   .text-muted-foreground { color: var(--ice-white); }
 }
+
+
+/* Violet motion system: efficient transforms, respects OS settings and
+   the explicit pause/resume button in the header. */
+:root { color-scheme: dark; }
+.motion-paused *, .motion-paused *::before, .motion-paused *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0ms !important;
+}
+.electric-type {
+  background: linear-gradient(110deg, var(--ice-white) -24%, var(--neon-lilac) 26%, var(--royal-violet) 57%, var(--ice-white) 88%);
+  background-size: 190% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: electric-sheen 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 19px rgb(137 85 255 / 22%));
+}
+@keyframes electric-sheen { from {background-position: 0% 50%} to {background-position: 100% 50%} }
+.hero-mesh {
+  background-image: linear-gradient(rgb(177 138 255 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(177 138 255 / 4%) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: radial-gradient(ellipse 68% 64% at 70% 37%, #000 12%, transparent 85%);
+  transform: perspective(700px) rotateX(16deg) scale(1.14);
+}
+.hero-beam {
+  background: radial-gradient(ellipse 46% 42% at 72% 40%, rgb(137 85 255 / 11%), transparent 100%);
+  animation: beam-breathe 8s ease-in-out infinite alternate;
+}
+@keyframes beam-breathe {from{opacity:.28; transform:scale(.98)}to{opacity:.88; transform:scale(1.05)}}
+.console-tilt {
+  position: relative;
+  z-index: 1;
+  transform-style: preserve-3d;
+  transition: transform 350ms cubic-bezier(.21,.87,.25,1), filter 350ms ease;
+  filter: drop-shadow(0 38px 48px rgb(10 4 32 / 28%));
+}
+.console-tilt::after {
+  content:"";
+  position:absolute;
+  inset: 5% 8%;
+  z-index: -1;
+  border-radius: 40%;
+  background: var(--deep-purple);
+  filter: blur(65px);
+  opacity: .28;
+  pointer-events:none;
+}
+@media (hover:hover) and (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .console-tilt { transform: perspective(1250px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); }
+  .console-tilt:hover { filter: drop-shadow(0 42px 57px rgb(91 43 191 / 32%)); }
+}
+.signal-shell {
+  position: relative; overflow: hidden; border-top:1px solid rgb(177 138 255 / 18%);
+  border-bottom:1px solid rgb(177 138 255 / 18%);
+  background: linear-gradient(92deg, rgb(91 43 191 / 10%), rgb(137 85 255 / 6%) 43%, rgb(91 43 191 / 10%));
+}
+.signal-viewport { overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+.signal-track { display:flex; width:max-content; animation: signal-move 32s linear infinite; }
+.signal-sequence { display:flex; flex:none; align-items:center; }
+.signal-item {
+  display:inline-flex; flex:none; align-items:center; gap:.75rem;
+  padding:1.15rem 2.9rem; color:var(--silver); white-space:nowrap;
+  font:500 .69rem/1.4 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+@keyframes signal-move { to { transform: translateX(-50%); } }
+button[aria-label="Pause decorative animations"], button[aria-label="Resume decorative animations"] { position: relative; z-index:2; }
+.glass, .study-frame, .studio-case {
+  transition: border-color 360ms ease, box-shadow 360ms ease, transform 360ms cubic-bezier(.2,.8,.2,1);
+}
+@media (hover:hover) {
+  .study-frame:hover {
+    border-color:rgb(177 138 255 / 56%);
+    box-shadow:0 0 0 1px rgb(137 85 255 / 18%),0 26px 90px -28px rgb(91 43 191 / 38%);
+  }
+  .studio-case:hover {
+    transform:translateY(-5px);
+    border-color: rgb(177 138 255 / 36%);
+    box-shadow:0 24px 65px -35px rgb(137 85 255 / 52%);
+  }
+  .studio-paper:hover { box-shadow: 14px 18px 0 -8px rgb(91 43 191 / 22%), 0 26px 80px -35px rgb(91 43 191 / 40%); }
+}
+.footer-aurora::before {
+  content:""; position:absolute; z-index:0; width:95vw; height:30rem;
+  left:50%; top:5%; transform:translateX(-50%);
+  background: radial-gradient(ellipse,rgb(91 43 191 / 20%),rgb(137 85 255 / 8%) 35%,transparent 70%);
+  pointer-events:none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-track, .electric-type, .hero-beam { animation: none !important; }
+  .console-tilt, .hero-mesh, .studio-case:hover { transform: none !important; }
+  .signal-viewport { mask-image: none; }
+  .signal-track { flex-wrap:wrap; width:auto; }
+  .signal-sequence:nth-child(2) { display:none; }
+  .signal-item { padding: .75rem 1rem; }
+}
+@media(max-width: 640px) {
+  .signal-item { padding: .95rem 1.2rem; font-size:.6rem; }
+  .hero-mesh { opacity:.45; background-size: 48px 48px; }
+}

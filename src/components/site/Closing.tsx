@@ -1,6 +1,6 @@
 import { ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PrivacyDialog } from "./PrivacyDialog";
+
 import { Annotation, Eyebrow, Reveal, Star, Wordmark, useAudit } from "./primitives";
 
 export function About() {
@@ -27,7 +27,7 @@ export function About() {
 export function EndCTA() {
   const { open } = useAudit();
   return (
-    <footer id="contact" className="relative overflow-hidden border-t border-line pt-24 md:pt-36">
+    <footer id="contact" className="footer-aurora relative overflow-hidden border-t border-line pt-24 md:pt-36">
       <span className="studio-index" aria-hidden="true">05 / Next steps</span>
       <div className="dot-grid absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden />
       <div className="blob -right-20 top-20 h-[460px] w-[460px] bg-primary/20" aria-hidden />
@@ -37,7 +37,7 @@ export function EndCTA() {
           <h2 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-8xl">
             No obligation.
             <br />
-            <em className="text-lilac">Keep the map</em>
+            <em className="electric-type">Keep the map</em>
             <br />
             either way.
           </h2>
@@ -74,13 +74,16 @@ export function EndCTA() {
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#work">Work</a></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#approach">Approach</a></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#what-you-get">What you get</a></li>
-              <li><PrivacyDialog /></li>
+              <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href={`${import.meta.env.BASE_URL}privacy.html`}>Privacy</a></li>
+              <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href={`${import.meta.env.BASE_URL}cookies.html`}>Cookies</a></li>
+              <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href={`${import.meta.env.BASE_URL}terms.html`}>Terms</a></li>
+              <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href={`${import.meta.env.BASE_URL}accessibility.html`}>Accessibility</a></li>
               <li><a className="inline-flex min-h-11 items-center hover:text-foreground" href="#top">Back to top ↑</a></li>
             </ul>
           </nav>
         </div>
         <p className="label-mono mt-8 flex items-center gap-2 text-muted-foreground">
-          <Star className="h-2 w-2 text-lilac" /> © {new Date().getFullYear()} ByKira · Examples on this site are illustrative
+          <Star className="h-2 w-2 text-lilac" /> © {new Date().getFullYear()} ByKira · Examples are illustrative · No online purchases
         </p>
       </div>
     </footer>

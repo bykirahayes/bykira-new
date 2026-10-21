@@ -1,37 +1,36 @@
 # ByKira: UK website compliance review
 
-**Reviewed:** 21 October 2026  
-**Repository:** bykirahayes/bykira-new  
-**Method:** Static source inspection, colour-contrast calculation, and comparison with ICO, legislation.gov.uk and GOV.UK guidance. **Not** a legal opinion, live browser audit, penetration test, cookie-network capture or certification.
+**Last source review:** 21 October 2026  
+**Deployment:** GitHub Pages (`bykirahayes.github.io/bykira-new`)  
+**Legal determination:** **NOT LEGALLY CERTIFIED / INCOMPLETE.** This is an implementation and source audit. It does not replace legal counsel, a live cookie inspection, a WCAG audit, or real business data verification.
 
-## Status: NOT VERIFIED COMPLIANT — action required before public launch
+## Changes implemented
 
-| Area | Static inspection result | Required next step |
-| --- | --- | --- |
-| Brand palette | Updated to six specified tokens in `src/styles.css`. Contrast checks: Royal Violet on Obsidian ~4.55:1; Obsidian on Royal Violet ~4.55:1; Neon Lilac on Obsidian ~7.53:1; Silver on Obsidian ~9.13:1. | Use Neon Lilac for small status text on dark cards (Royal Violet is only ~4.18:1 on #151323). Run automated and manual browser contrast checks on ALL states, especially alpha overlays, hover states and disabled text. |
-| UK business identity and contact | **BLOCKER.** No verified legal operator name, geographical business address or email is configured. `CONTACT_EMAIL` is null. | Add the operator's true legal name, geographical address, direct email, and company registration number/registered office/jurisdiction/VAT number **if applicable**. Do not invent details. Review E-Commerce Regulations 2002 reg. 6 and Companies House requirements. |
-| Privacy (UK GDPR) | **INCOMPLETE.** New interim Privacy & cookies dialog accurately explains the local-only enquiry form and visible external services. This is **not** a complete Article 13 notice. | Confirm operator identity/contact, purposes, lawful bases, recipients/hosting, transfers, retention, rights, complaints process, and publish a final notice at data collection points. |
-| Cookies/PECR | App code does not visibly configure analytics/advertising cookies. Google Fonts is externally loaded; hosting and GitHub Pages production behaviour has **not** been tested. | Test the deployed site with clean-browser storage, request inspection and consent state. Block consent-requiring non-essential storage until permitted. A banner is not automatically required if none exists. Check current ICO guidance including DUA Act exemptions. |
-| Enquiry integrity | **Improved.** Wording now makes clear the form neither sends nor books anything. It prepares text for copying or email once verified email is configured. | Supply a real monitored email or secure backend and revise privacy notice before accepting messages. Test end-to-end. |
-| Accessibility | Existing skip link, page language, visible focus, semantic sections, form error associations and reduced-motion support. Hero map keyboard tab handling improved. | Perform keyboard/screen-reader audit at 320px/mobile and axe/Lighthouse/WCAG 2.2 AA audit. Dynamic rendering and all hover/contrast conditions are **not verified**. |
-| Accuracy of advertising | Sample UI and example map are identified as illustrative. No checkout exists. Free audit, 45-minute call and 48-hour delivery are claims present in content. | Confirm you can actually provide these promised services and times; if not, change the claims. Clarify any eligibility/limitations. |
-| Consumer sales / checkout | No real payment, ordering or checkout in audited app. | If future services are sold online, implement applicable pre-contract information, pricing, cancellation and payment disclosures. |
-| Security and platform | No app-side analytics token or service backend in reviewed files. The app has been migrated to a static Vite build for GitHub Pages; runtime server error hooks were removed. | Check GitHub Pages hosting logs, external CDN/fonts, privacy policies, HTTPS, security headers, CSP, dependencies and data processors. No vulnerability or dependency scanner was executed in this review. |
+- Permanent `privacy.html`, `cookies.html`, `terms.html` and `accessibility.html` pages linked in the main footer. These pages are intentionally transparent that operator details are missing.
+- Removed external Google Fonts stylesheet calls; bundled font assets are served from the same GitHub Pages build.
+- Pausable decorative animation control and system reduced-motion support; CSS uses controlled transforms and gentle glow.
+- Enquiry form accurately states that it only composes a local message; it does not transmit or book. It links to privacy information at point of data entry.
+- Added `bun run legal:check` to ensure legal pages/links exist and external Google Fonts are not reintroduced.
 
-## Main relevant official sources
+## Remaining release blockers
 
-- ICO privacy information: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/what-privacy-information-should-we-provide/
-- ICO storage and access technologies guidance (updated April 2026): https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/
-- ICO cookies/privacy for small businesses: https://ico.org.uk/for-organisations/advice-for-small-organisations/privacy-notices-and-cookies/cookies-and-privacy-notices-in-detail/
-- Electronic Commerce Regulations (reg. 6): https://www.legislation.gov.uk/uksi/2002/2013/regulation/6
-- Companies House site disclosure: https://www.gov.uk/running-a-limited-company/signs-stationery-and-promotional-material
-- GOV.UK online selling rules (if checkout added): https://www.gov.uk/online-and-distance-selling-for-businesses/online-selling
+1. **Legal operator identity, postal business address, verified contact email** (UK Electronic Commerce Regulations 2002 regulation 6). Confirm whether ByKira is an individual/sole trader, partnership or limited company.
+2. If a limited company, publish the **registered company name, number, registered office and jurisdiction**. Display VAT number if VAT registered and applicable.
+3. Complete a **UK GDPR Article 13 privacy notice** after the real controller, legal basis for each actual processing purpose, data recipients, transfers, retention and rights request route are confirmed. Do not invent these.
+4. Verify any operational promise of a **free 45-minute audit** and **48-hour turnaround**, and keep all illustrations visibly labelled. No sale/payment is implemented.
+5. Perform a **fresh browser inspection** of GitHub Pages and external resources for cookies, storage and technical requests. Confirm whether any PECR consent/objection mechanism is necessary; do not add a banner by default without a purpose.
+6. Perform accessibility checks using **keyboard, mobile zoom, screen readers and automated WCAG testing**. The current code is not accessibility-certified.
+7. Validate hosting, headers, TLS and external dependencies, plus privacy/retention practices of any future enquiry backend. The present site is static and does not send email.
 
-## Release criteria
+## Sources reviewed (21 October 2026)
 
-1. Provide verified business identity, address and direct email.
-2. Replace interim notice with a complete accurate UK GDPR notice for real processing.
-3. Test cookies/storage/tracking on actual production hosting; implement consent **if applicable**.
-4. Run a real browser/mobile keyboard + WCAG accessibility audit.
-5. Verify Free Audit offer and lead-delivery behaviour.
-6. GitHub Actions build, TypeScript checks, tests and Pages deployment succeeded on 21 October 2026: https://github.com/bykirahayes/bykira-new/actions/runs/39671647884 . Live browser accessibility, network privacy and hosting verification still need to be completed.
+- ICO UK GDPR privacy requirements: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/what-privacy-information-should-we-provide/
+- ICO PECR storage/access guidance (updated 29 April 2026): https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/
+- Electronic Commerce Regulations 2002, regulation 6: https://www.legislation.gov.uk/uksi/2002/2013/regulation/6
+- Limited company website disclosures: https://www.gov.uk/running-a-limited-company/signs-stationery-and-promotional-material
+- WCAG motion guidance: https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions
+
+## CI validation
+
+GitHub Actions should run TypeScript checks, Vitest, legal content checks and production build. A successful CI run confirms that source checks passed, **not** UK law compliance.
+

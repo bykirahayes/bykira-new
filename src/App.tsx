@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { SignalStrip } from "@/components/site/SignalStrip";
 import { MotionConfig } from "framer-motion";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
@@ -16,10 +17,15 @@ import { Toaster } from "@/components/ui/sonner";
 // without a Node, Lovable or TanStack server.
 export function App() {
   const [open, setOpen] = useState(false);
+  const [motionPaused, setMotionPaused] = useState(false);
+  useEffect(() => {
+    document.documentElement.classList.toggle("motion-paused", motionPaused);
+    return () => document.documentElement.classList.remove("motion-paused");
+  }, [motionPaused]);
   const ctx = useMemo(() => ({ open: () => setOpen(true) }), []);
 
   return (
-    <MotionConfig reducedMotion="user">
+    <MotionConfig reducedMotion={motionPaused ? "always" : "user"}>
       <AuditContext.Provider value={ctx}>
         <div className="grain relative">
           <a
@@ -28,9 +34,10 @@ export function App() {
           >
             Skip to content
           </a>
-          <Header />
+          <Header motionPaused={motionPaused} onToggleMotion={() => setMotionPaused((v) => !v)} />
           <main id="main">
             <Hero />
+            <SignalStrip />
             <Journey />
             <Call />
             <Deliverable />

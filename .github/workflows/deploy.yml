@@ -29,6 +29,8 @@ jobs:
         run: bun run typecheck
       - name: Run tests
         run: bun run test
+      - name: Check legal pages and disclosures
+        run: bun run legal:check
       - name: Build for GitHub Pages
         run: bun run build
       - name: Configure Pages

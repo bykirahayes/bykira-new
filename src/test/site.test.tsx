@@ -8,7 +8,10 @@ describe("ByKira GitHub Pages site", () => {
     const markup = renderToStaticMarkup(<App />);
     expect(markup).toContain("Before we build");
     expect(markup).toContain("Request a free audit");
-    expect(markup).toContain("Privacy &amp; cookies");
+    expect(markup).toContain("privacy.html");
+    expect(markup).toContain("cookies.html");
+    expect(markup).toContain("accessibility.html");
+    expect(markup).toContain("Pause decorative animations");
     expect(markup).toContain("View example map");
   });
 

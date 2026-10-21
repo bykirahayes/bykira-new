@@ -10,6 +10,7 @@ export function Hero() {
   const { open } = useAudit();
   const [active, setActive] = useState<StepId>("booking");
   const ref = useRef<HTMLElement>(null);
+  const consoleRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
   const onMove = (e: MouseEvent) => {
@@ -17,6 +18,15 @@ export function Hero() {
     const r = ref.current.getBoundingClientRect();
     ref.current.style.setProperty("--mx", `${e.clientX - r.left}px`);
     ref.current.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
+
+  const onConsoleMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (reduce || !consoleRef.current) return;
+    const r = consoleRef.current.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
+    const y = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
+    consoleRef.current.style.setProperty("--tilt-x", `${-y * 3}deg`);
+    consoleRef.current.style.setProperty("--tilt-y", `${x * 4}deg`);
   };
 
   const fade = (d: number) =>
@@ -32,6 +42,8 @@ export function Hero() {
     >
       <div className="dot-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)]" aria-hidden />
       <div className="starfield absolute inset-0" aria-hidden />
+      <div className="hero-mesh pointer-events-none absolute inset-0" aria-hidden />
+      <div className="hero-beam pointer-events-none absolute inset-0" aria-hidden />
       <div className="orbit pointer-events-none absolute -right-24 top-16 hidden h-[620px] w-[620px] lg:block" aria-hidden><span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lilac shadow-[var(--glow-primary)]" /></div>
       <div className="blob -right-40 top-10 h-[420px] w-[420px] bg-primary/20" aria-hidden />
       <div className="blob -left-40 bottom-0 h-[300px] w-[300px] bg-lilac/10" aria-hidden />
@@ -48,7 +60,7 @@ export function Hero() {
             <br />
             we trace how your
             <br />
-            business <em className="relative text-lilac">actually runs.<svg viewBox="0 0 300 20" className="absolute -bottom-2 left-0 w-full text-leak" aria-hidden><path d="M4 14 C 80 4, 200 4, 296 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></em>
+            business <em className="electric-type relative">actually runs.<svg viewBox="0 0 300 20" className="absolute -bottom-2 left-0 w-full text-leak" aria-hidden><path d="M4 14 C 80 4, 200 4, 296 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></em>
           </motion.h1>
           <motion.p {...fade(0.16)} className="mt-7 max-w-md text-lg leading-relaxed text-muted-foreground">
             One call. One customer journey. We find the slow handoffs, the repetitive admin, and what could work better.
@@ -77,7 +89,9 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:-mr-6"
         >
-          <OpsMap active={active} onSelect={setActive} />
+          <div ref={consoleRef} className="console-tilt" onMouseMove={onConsoleMove} onMouseLeave={() => { consoleRef.current?.style.setProperty("--tilt-x", "0deg"); consoleRef.current?.style.setProperty("--tilt-y", "0deg"); }}>
+            <OpsMap active={active} onSelect={setActive} />
+          </div>
           <Annotation className="absolute -left-4 -top-14 hidden rotate-[-6deg] lg:block">
             Find leaks. Get fixes.<br />Keep the map. ↘
           </Annotation>

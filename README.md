@@ -39,6 +39,15 @@ GitHub Actions uses `bun install` and the same scripts. The old Lovable-specific
 - Copyable audit enquiry text; **the form does not send messages and does not book calls** until a verified contact destination/service is configured
 - Mobile-responsive layouts, keyboard affordances, reduced-motion support and purple brand palette
 
+## Design and legal improvements (21 October 2026)
+
+- Added kinetic signal ribbon, interactive depth/tilt, animated violet typography, richer lighting and card hover effects.
+- Added a visible pause/resume button for decorative animations; prefers-reduced-motion support is maintained.
+- Fonts are bundled in the production build rather than fetched from Google Fonts.
+- Permanent direct-link pages: `privacy.html`, `cookies.html`, `terms.html`, `accessibility.html`.
+- Run `bun run legal:check` for automated checks of important legal links/disclosures. It **does not prove UK legal compliance**.
+- Business identity, geographical address, direct verified email and any applicable company/VAT details remain unconfigured.
+
 ## UK legal checklist
 
 Read [UK_COMPLIANCE_REVIEW.md](UK_COMPLIANCE_REVIEW.md). The interim Privacy & cookies dialog is **not** a final UK GDPR privacy notice; verified business details and live-hosting checks are still required. A successful build does not establish legal compliance.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Wordmark, useAudit } from "./primitives";
@@ -12,7 +12,7 @@ const NAV = [
   { id: "contact", label: "Contact" },
 ];
 
-export function Header() {
+export function Header({ motionPaused, onToggleMotion }: { motionPaused: boolean; onToggleMotion: () => void }) {
   const { open } = useAudit();
   const [active, setActive] = useState("");
   const [menu, setMenu] = useState(false);
@@ -81,6 +81,16 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleMotion}
+            aria-pressed={motionPaused}
+            aria-label={motionPaused ? "Resume decorative animations" : "Pause decorative animations"}
+            title={motionPaused ? "Resume animations" : "Pause animations"}
+            className="motion-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-lilac transition-colors hover:border-lilac/50 hover:bg-primary/10"
+          >
+            {motionPaused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+          </button>
           <Button variant="pill" className="hidden h-10 px-5 sm:inline-flex" onClick={open}>
             Request a free audit
           </Button>
