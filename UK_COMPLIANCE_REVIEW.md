@@ -8,7 +8,7 @@
 
 | Area | Static inspection result | Required next step |
 | --- | --- | --- |
-| Brand palette | Updated to six specified tokens in `src/styles.css`. Contrast checks: Royal Violet on Obsidian ~4.55:1; Obsidian on Royal Violet ~4.55:1; Neon Lilac on Obsidian ~7.53:1; Silver on Obsidian ~9.13:1. | Run automated and manual browser contrast checks on ALL states, especially alpha overlays, hover states and disabled text. |
+| Brand palette | Updated to six specified tokens in `src/styles.css`. Contrast checks: Royal Violet on Obsidian ~4.55:1; Obsidian on Royal Violet ~4.55:1; Neon Lilac on Obsidian ~7.53:1; Silver on Obsidian ~9.13:1. | Use Neon Lilac for small status text on dark cards (Royal Violet is only ~4.18:1 on #151323). Run automated and manual browser contrast checks on ALL states, especially alpha overlays, hover states and disabled text. |
 | UK business identity and contact | **BLOCKER.** No verified legal operator name, geographical business address or email is configured. `CONTACT_EMAIL` is null. | Add the operator's true legal name, geographical address, direct email, and company registration number/registered office/jurisdiction/VAT number **if applicable**. Do not invent details. Review E-Commerce Regulations 2002 reg. 6 and Companies House requirements. |
 | Privacy (UK GDPR) | **INCOMPLETE.** New interim Privacy & cookies dialog accurately explains the local-only enquiry form and visible external services. This is **not** a complete Article 13 notice. | Confirm operator identity/contact, purposes, lawful bases, recipients/hosting, transfers, retention, rights, complaints process, and publish a final notice at data collection points. |
 | Cookies/PECR | App code does not visibly configure analytics/advertising cookies. Google Fonts is externally loaded; hosting and Lovable preview behaviour have **not** been tested. | Test the deployed site with clean-browser storage, request inspection and consent state. Block consent-requiring non-essential storage until permitted. A banner is not automatically required if none exists. Check current ICO guidance including DUA Act exemptions. |
@@ -21,6 +21,7 @@
 ## Main relevant official sources
 
 - ICO privacy information: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/what-privacy-information-should-we-provide/
+- ICO storage and access technologies guidance (updated April 2026): https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/
 - ICO cookies/privacy for small businesses: https://ico.org.uk/for-organisations/advice-for-small-organisations/privacy-notices-and-cookies/cookies-and-privacy-notices-in-detail/
 - Electronic Commerce Regulations (reg. 6): https://www.legislation.gov.uk/uksi/2002/2013/regulation/6
 - Companies House site disclosure: https://www.gov.uk/running-a-limited-company/signs-stationery-and-promotional-material

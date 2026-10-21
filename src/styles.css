@@ -76,7 +76,7 @@
   --input: rgb(177 138 255 / 24%);
   --ring: var(--neon-lilac);
   --lilac: var(--neon-lilac);
-  --leak: var(--royal-violet);
+  --leak: var(--neon-lilac);
   --line: rgb(177 138 255 / 12%);
   --surface: rgb(177 138 255 / 5%);
   --paper: var(--ice-white);
