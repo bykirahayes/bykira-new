@@ -3,17 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Wordmark, useAudit } from "./primitives";
-
-const NAV = [
-  { id: "work", label: "Work" },
-  { id: "approach", label: "Approach" },
-  { id: "what-you-get", label: "What you get" },
-  { id: "contact", label: "Contact" },
-];
+import { NAV } from "@/lib/site";
+import { Monogram } from "./primitives";
 
 export function Header() {
-  const { open } = useAudit();
   const [active, setActive] = useState("");
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -49,12 +42,9 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-        <div className="flex items-center gap-5">
-          <a href="#top" aria-label="ByKira, back to top" className="flex min-h-11 items-center">
-            <Wordmark />
-          </a>
-          <span className="studio-nav-note hidden lg:block">Sites &amp; systems<br />made with intention.</span>
-        </div>
+        <a href="#top" aria-label="Kian Price, back to top" className="flex min-h-11 items-center">
+          <Monogram />
+        </a>
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {NAV.map((n) => (
@@ -70,7 +60,7 @@ export function Header() {
                   {active === n.id && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-foreground/8 ring-1 ring-foreground/10"
+                      className="absolute inset-0 -z-10 rounded-full bg-primary/15 ring-1 ring-primary/40"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -81,8 +71,8 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <Button variant="pill" className="hidden h-10 px-5 sm:inline-flex" onClick={open}>
-            Book a free audit
+          <Button variant="pill" className="hidden h-10 px-5 lg:inline-flex" asChild>
+            <a href="#contact">Get in touch</a>
           </Button>
           <button
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line md:hidden"
@@ -119,11 +109,6 @@ export function Header() {
                   </a>
                 </li>
               ))}
-              <li className="pt-4">
-                <Button variant="pill" size="xl" className="w-full" onClick={() => { setMenu(false); open(); }}>
-                  Book a free audit
-                </Button>
-              </li>
             </ul>
           </motion.nav>
         )}

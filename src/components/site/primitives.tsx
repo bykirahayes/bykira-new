@@ -1,23 +1,14 @@
-import { createContext, useContext, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const AuditContext = createContext<{ open: () => void }>({ open: () => {} });
-export const useAudit = () => useContext(AuditContext);
-
-export function Star({ className }: { className?: string }) {
+export function Monogram({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={cn("inline-block", className)} fill="currentColor">
-      <path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0Z" />
-    </svg>
-  );
-}
-
-export function Wordmark({ className }: { className?: string }) {
-  return (
-    <span className={cn("studio-wordmark inline-flex items-start font-display text-2xl leading-none tracking-tight", className)}>
-      ByKira
-      <Star className="ml-0.5 mt-0.5 h-2.5 w-2.5 text-lilac" />
+    <span className={cn("inline-flex items-center gap-3", className)}>
+      <span className="monogram flex h-10 w-10 items-center justify-center rounded-xl font-display text-xl leading-none">
+        KP<span className="text-lilac">.</span>
+      </span>
+      <span className="label-mono hidden !text-[0.7rem] text-foreground sm:inline">Kian Price</span>
     </span>
   );
 }
@@ -47,14 +38,12 @@ export function Eyebrow({ n, children, className }: { n: string; children: React
   );
 }
 
-export function Tag({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "leak" | "fix" }) {
+export function Tag({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "accent" }) {
   return (
     <span
       className={cn(
         "label-mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 !text-[0.6rem]",
-        tone === "neutral" && "border-foreground/15 text-muted-foreground",
-        tone === "leak" && "border-leak/40 bg-leak/10 text-leak",
-        tone === "fix" && "border-primary/50 bg-primary/15 text-lilac",
+        tone === "neutral" ? "border-foreground/15 text-muted-foreground" : "border-primary/50 bg-primary/15 text-lilac",
       )}
     >
       {children}
@@ -62,11 +51,12 @@ export function Tag({ children, tone = "neutral" }: { children: ReactNode; tone?
   );
 }
 
-/** Handwritten-ish marginal note */
-export function Annotation({ children, className }: { children: ReactNode; className?: string }) {
+export function SectionHead({ n, eyebrow, title, intro }: { n: string; eyebrow: string; title: ReactNode; intro?: ReactNode }) {
   return (
-    <p className={cn("font-script text-xl leading-tight text-lilac/90", className)}>
-      {children}
-    </p>
+    <Reveal className="max-w-3xl">
+      <Eyebrow n={n}>{eyebrow}</Eyebrow>
+      <h2 className="section-heading mt-5 font-display text-4xl leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">{title}</h2>
+      {intro && <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{intro}</p>}
+    </Reveal>
   );
 }

@@ -45,26 +45,26 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.135 0.014 270);
-  --foreground: oklch(0.96 0.01 70);
-  --card: oklch(0.18 0.018 272);
-  --card-foreground: oklch(0.96 0.01 70);
-  --popover: oklch(0.18 0.018 272);
-  --popover-foreground: oklch(0.96 0.01 70);
-  --primary: oklch(0.555 0.20 269);
-  --primary-foreground: oklch(0.98 0.005 70);
+  --background: oklch(0.13 0.012 275);
+  --foreground: oklch(0.97 0.003 286);
+  --card: oklch(0.17 0.016 280);
+  --card-foreground: oklch(0.97 0.003 286);
+  --popover: oklch(0.17 0.016 280);
+  --popover-foreground: oklch(0.97 0.003 286);
+  --primary: oklch(0.6 0.24 292);
+  --primary-foreground: oklch(0.98 0.003 286);
   --secondary: oklch(0.22 0.02 272);
-  --secondary-foreground: oklch(0.96 0.01 70);
+  --secondary-foreground: oklch(0.97 0.003 286);
   --muted: oklch(0.215 0.017 272);
-  --muted-foreground: oklch(0.74 0.015 70);
+  --muted-foreground: oklch(0.76 0.025 262);
   --accent: oklch(0.24 0.02 280);
-  --accent-foreground: oklch(0.96 0.01 70);
+  --accent-foreground: oklch(0.97 0.003 286);
   --destructive: oklch(0.65 0.2 27);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.8 0.11 298);
-  --lilac: oklch(0.8 0.11 298);
+  --ring: oklch(0.78 0.14 295);
+  --lilac: oklch(0.78 0.14 295);
   --leak: oklch(0.77 0.145 60);
   --line: oklch(1 0 0 / 8%);
   --surface: oklch(1 0 0 / 3.5%);
@@ -225,214 +225,30 @@
 }
 
 
-/* ByKira / Fieldwork — editorial layer.
- * Static materials only: the site's existing animations, motion values and
- * keyframes above remain exactly as they were. */
-:root {
-  --studio-hairline: color-mix(in oklab, var(--foreground) 16%, transparent);
-  --studio-amber-wash: color-mix(in oklab, var(--leak) 10%, transparent);
+
+/* Kian Price portfolio layer */
+.hero-display { text-wrap: balance; text-shadow: 0 0 4rem color-mix(in oklab, var(--primary) 22%, transparent); }
+.section-heading { text-wrap: balance; }
+.monogram {
+  border: 1px solid color-mix(in oklab, var(--primary) 55%, transparent);
+  background: linear-gradient(150deg, color-mix(in oklab, var(--primary) 22%, transparent), transparent);
+  box-shadow: 0 0 24px -8px var(--primary);
 }
-body {
+.blueprint {
   background-image:
-    radial-gradient(ellipse 62rem 35rem at 78% -4%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 72%),
-    radial-gradient(ellipse 38rem 25rem at 5% 38%, color-mix(in oklab, var(--leak) 4%, transparent), transparent 73%),
-    linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--foreground) 1.5%, transparent) 50%, transparent 100%);
+    linear-gradient(color-mix(in oklab, var(--lilac) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--lilac) 7%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
-.studio-wordmark { letter-spacing: -0.065em; }
-.studio-wordmark::first-letter { letter-spacing: -0.09em; }
-.studio-nav-note {
-  border-left: 1px solid var(--studio-hairline);
-  padding-left: 1rem;
-  font: 500 0.56rem/1.45 "JetBrains Mono", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.17em;
-  color: color-mix(in oklab, var(--foreground) 53%, transparent);
-  max-width: 9.5rem;
-}
-.hero-copy {
+.frame { isolation: isolate; border-color: color-mix(in oklab, var(--primary) 30%, transparent); }
+.frame::before, .frame::after { content: ""; position: absolute; width: 16px; height: 16px; pointer-events: none; z-index: 2; }
+.frame::before { top: 9px; left: 9px; border-top: 1px solid var(--lilac); border-left: 1px solid var(--lilac); }
+.frame::after { right: 9px; bottom: 9px; border-right: 1px solid var(--primary); border-bottom: 1px solid var(--primary); }
+.card-tactile {
   position: relative;
-  isolation: isolate;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem 1.8rem 0.8rem 0.8rem;
+  background: linear-gradient(160deg, oklch(1 0 0 / 5%), transparent 60%), color-mix(in oklab, var(--card) 85%, black);
+  transition: border-color 220ms, transform 220ms, box-shadow 220ms;
 }
-.hero-copy::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto auto -1.25rem;
-  width: 1px;
-  height: min(16rem, 46%);
-  background: linear-gradient(to bottom, var(--leak), color-mix(in oklab, var(--foreground) 12%, transparent), transparent);
-  opacity: 0.8;
-}
-.hero-fieldnote {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  width: max-content;
-  max-width: 100%;
-  color: color-mix(in oklab, var(--foreground) 55%, transparent);
-  font: 500 0.61rem/1.6 "JetBrains Mono", monospace;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.hero-fieldnote::before {
-  content: "";
-  width: 1.25rem;
-  height: 1px;
-  background: var(--leak);
-}
-.hero-display { text-wrap: balance; }
-.hero-display em {
-  font-weight: 400;
-  text-shadow: 0 0 2.5rem color-mix(in oklab, var(--primary) 15%, transparent);
-}
-.hero-footer-rule {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  border-top: 1px solid var(--studio-hairline);
-  padding-top: 1.25rem;
-  color: color-mix(in oklab, var(--foreground) 48%, transparent);
-  font: 500 0.61rem/1.5 "JetBrains Mono", monospace;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-.hero-footer-rule .hero-footer-track {
-  flex: 1;
-  max-width: 13rem;
-  border-bottom: 1px dashed color-mix(in oklab, var(--lilac) 45%, transparent);
-}
-.studio-index {
-  position: absolute;
-  z-index: 0;
-  top: 2.25rem;
-  right: max(1.25rem, calc((100vw - 79rem) / 2));
-  font: 500 0.63rem/1.2 "JetBrains Mono", monospace;
-  letter-spacing: 0.18em;
-  color: color-mix(in oklab, var(--foreground) 32%, transparent);
-  text-transform: uppercase;
-  pointer-events: none;
-}
-.studio-index::before { content: "✳"; padding-right: 0.7rem; color: var(--leak); font-size: 0.8rem; }
-.studio-section-heading { position: relative; text-wrap: balance; }
-.studio-section-heading::after {
-  content: "";
-  display: block;
-  margin-top: 1.15rem;
-  width: 3.25rem;
-  height: 2px;
-  background: var(--leak);
-  transform: rotate(-2deg);
-  border-radius: 20px;
-}
-.study-frame {
-  isolation: isolate;
-  border-radius: 1.25rem;
-  border: 1px solid color-mix(in oklab, var(--lilac) 27%, transparent);
-  background:
-    linear-gradient(135deg, color-mix(in oklab, var(--foreground) 5%, transparent), transparent 55%),
-    color-mix(in oklab, var(--card) 86%, black);
-  box-shadow:
-    0 0 0 5px color-mix(in oklab, var(--background) 70%, transparent),
-    0 0 0 6px color-mix(in oklab, var(--foreground) 12%, transparent),
-    0 32px 78px -42px black;
-}
-.study-frame::before,
-.study-frame::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  z-index: 2;
-  pointer-events: none;
-}
-.study-frame::before { top: 9px; left: 9px; border-top: 1px solid var(--leak); border-left: 1px solid var(--leak); }
-.study-frame::after { right: 9px; bottom: 9px; border-right: 1px solid var(--lilac); border-bottom: 1px solid var(--lilac); }
-.studio-diagnostic { border-radius: 0.65rem 1.7rem 1.7rem 1.7rem; }
-.studio-diagnostic::before {
-  content: "FIELD NOTE";
-  position: absolute;
-  z-index: 1;
-  right: 1.25rem;
-  bottom: 0.4rem;
-  font: 500 0.55rem/1 "JetBrains Mono", monospace;
-  letter-spacing: 0.18em;
-  color: color-mix(in oklab, var(--foreground) 18%, transparent);
-  pointer-events: none;
-}
-.studio-case {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.8rem 2.2rem 0.8rem 0.8rem;
-}
-.studio-case::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: repeating-linear-gradient(-45deg, transparent 0 7px, color-mix(in oklab, var(--foreground) 4%, transparent) 7px 8px);
-  border-bottom-left-radius: 3rem;
-  pointer-events: none;
-}
-.studio-case--leak {
-  border-color: color-mix(in oklab, var(--leak) 33%, transparent);
-  background:
-    radial-gradient(circle at 0 0, var(--studio-amber-wash), transparent 56%),
-    color-mix(in oklab, var(--card) 87%, black);
-}
-.studio-case--fix {
-  border-color: color-mix(in oklab, var(--lilac) 32%, transparent);
-  background:
-    radial-gradient(circle at 100% 0, color-mix(in oklab, var(--lilac) 9%, transparent), transparent 52%),
-    color-mix(in oklab, var(--card) 90%, black);
-}
-.studio-case .case-number {
-  font: 500 0.63rem/1.3 "JetBrains Mono", monospace;
-  letter-spacing: 0.13em;
-  color: var(--lilac);
-}
-.studio-case--leak .case-number { color: var(--leak); }
-.studio-paper {
-  position: relative;
-  isolation: isolate;
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(90deg, transparent 3.3rem, color-mix(in oklab, var(--leak) 22%, transparent) 3.35rem, transparent 3.4rem),
-    repeating-linear-gradient(to bottom, transparent 0 26px, color-mix(in oklab, var(--paper-foreground) 7%, transparent) 27px 28px);
-  border: 1px solid color-mix(in oklab, var(--paper-foreground) 12%, transparent);
-  box-shadow: 14px 18px 0 -8px color-mix(in oklab, var(--leak) 22%, transparent), var(--shadow-panel);
-}
-.studio-paper > * { position: relative; }
-.studio-legend {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.75rem;
-  background: color-mix(in oklab, var(--lilac) 8%, transparent);
-  border-left: 2px solid var(--leak);
-  color: var(--foreground);
-  font: 500 0.63rem/1.4 "JetBrains Mono", monospace;
-  letter-spacing: 0.06em;
-}
-.studio-footer-mark {
-  display: inline-block;
-  border: 1px solid color-mix(in oklab, var(--lilac) 55%, transparent);
-  border-radius: 50%;
-  padding: 0.7rem;
-  color: var(--lilac);
-  font: 500 0.62rem/1.1 "JetBrains Mono", monospace;
-  letter-spacing: 0.13em;
-  text-align: center;
-  text-transform: uppercase;
-}
-@media (max-width: 767px) {
-  .hero-copy::before { left: -0.65rem; height: 8.5rem; }
-  .hero-fieldnote { margin-bottom: 0.9rem; font-size: 0.55rem; }
-  .hero-footer-rule { font-size: 0.52rem; }
-  .studio-index { top: 1.25rem; right: 1.25rem; }
-  .studio-paper {
-    background-image: repeating-linear-gradient(to bottom, transparent 0 26px, color-mix(in oklab, var(--paper-foreground) 6%, transparent) 27px 28px);
-  }
-}
+.card-tactile:hover { border-color: color-mix(in oklab, var(--primary) 55%, transparent); transform: translateY(-3px); box-shadow: 0 20px 50px -25px var(--primary); }
