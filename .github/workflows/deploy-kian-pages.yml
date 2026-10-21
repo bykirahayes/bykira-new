@@ -1,0 +1,36 @@
+name: Validate Kian Price portfolio static export
+
+on:
+  push:
+    branches: [kian-price-portfolio]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Kian portfolio branch
+        uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Generate static portfolio
+        run: bun run build
+      - name: Check static output
+        run: |
+          test -f .output/public/index.html
+          grep -q "Kian Price" .output/public/index.html
+          touch .output/public/.nojekyll
+      - name: Save static site for transfer to an independent repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: kian-price-pages-build
+          path: .output/public
+
+# This workflow deliberately NEVER publishes to GitHub Pages.
+# The existing bykira-new GitHub Pages site belongs to ByKira.
+# Create an independent public repository for Kian Price before deploying.
