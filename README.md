@@ -36,7 +36,7 @@ GitHub Actions uses `bun install` and the same scripts. The old Lovable-specific
 ## Features
 
 - Original ByKira landing page, sample interactive operations map, illustrated workflows and modal dialogs
-- Copyable audit enquiry text; **the form does not send messages and does not book calls** until a verified contact destination/service is configured
+- Copyable audit enquiry text or pre-addressed `mailto:` draft to `info@bykira.co.uk`; the form does not itself send messages or book calls. The mailbox has not been independently verified.
 - Mobile-responsive layouts, keyboard affordances, reduced-motion support and purple brand palette
 
 ## Design and legal improvements (21 October 2026)
@@ -46,11 +46,11 @@ GitHub Actions uses `bun install` and the same scripts. The old Lovable-specific
 - Fonts are bundled in the production build rather than fetched from Google Fonts.
 - Permanent direct-link pages: `privacy.html`, `cookies.html`, `terms.html`, `accessibility.html`.
 - Run `bun run legal:check` for automated checks of important legal links/disclosures. It **does not prove UK legal compliance**.
-- Business identity, geographical address, direct verified email and any applicable company/VAT details remain unconfigured.
+- ByKira is a sole-trader brand. The owner has supplied `info@bykira.co.uk` for contact; inbox delivery has not been independently verified. The trader's legal name and geographical business/service address remain unprovided. No Companies House number is presumed.
 
 ## UK legal checklist
 
-Read [UK_COMPLIANCE_REVIEW.md](UK_COMPLIANCE_REVIEW.md). The interim Privacy & cookies dialog is **not** a final UK GDPR privacy notice; verified business details and live-hosting checks are still required. A successful build does not establish legal compliance.
+Read [UK_COMPLIANCE_REVIEW.md](UK_COMPLIANCE_REVIEW.md). The published legal pages are **not** a final UK GDPR privacy notice. The proprietor's legal identity/address, information-handling arrangements and live-hosting checks still require confirmation. A successful build does not establish legal compliance.
 
 ## Hosting limitations
 

@@ -4,6 +4,7 @@ for (const page of required) {
   if (!existsSync(page)) throw new Error("Missing legal page: " + page);
   const content = readFileSync(page, "utf8");
   if (!content.includes('lang="en-GB"') || !content.includes("not legal certification")) throw new Error("Review legal page: " + page);
+  if (!content.includes("info@bykira.co.uk") || !content.includes("sole-trader")) throw new Error("Legal contact or trading status missing: " + page);
 }
 const html = readFileSync("index.html", "utf8");
 if (html.includes("fonts.googleapis.com") || html.includes("fonts.gstatic.com")) throw new Error("Externally hosted fonts unexpectedly enabled");
@@ -13,4 +14,7 @@ for (const name of ["privacy.html", "cookies.html", "terms.html", "accessibility
 }
 const site = readFileSync("src/components/site/AuditDialog.tsx", "utf8");
 if (!site.includes("nothing has been sent") || !site.includes("does not send")) throw new Error("Audit form must not claim it sends messages");
-console.log("Legal content integrity checks passed. Human/legal review remains required.");
+const siteConfig = readFileSync("src/lib/site.ts", "utf8");
+if (!siteConfig.includes('CONTACT_EMAIL = "info@bykira.co.uk"')) throw new Error("Contact email must use the owner-provided address");
+if (!footer.includes("mailto:")) throw new Error("Footer must contain an accessible email link");
+console.log("Legal content integrity checks passed. Legal name/address and human review still required.");

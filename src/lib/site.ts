@@ -1,9 +1,9 @@
 /**
- * Where audit requests should go. Leave as null until a real, verified
- * inbox exists — the form will then offer "Copy enquiry" instead of
- * pretending to send. Example: "hello@yourdomain.co.uk"
+ * Owner-provided public contact destination. It has NOT been independently
+ * verified as a working mailbox. Visitors must explicitly send in their
+ * email application; this static website never submits enquiries itself.
  */
-export const CONTACT_EMAIL: string | null = null;
+export const CONTACT_EMAIL = "info@bykira.co.uk";
 
 export type StepId = "inquiry" | "booking" | "payment" | "records";
 

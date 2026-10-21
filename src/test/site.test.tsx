@@ -13,10 +13,12 @@ describe("ByKira GitHub Pages site", () => {
     expect(markup).toContain("accessibility.html");
     expect(markup).toContain("Pause decorative animations");
     expect(markup).toContain("View example map");
+    expect(markup).toContain("info@bykira.co.uk");
+    expect(markup).toContain("mailto:info@bykira.co.uk");
   });
 
   it("keeps journey steps available and does not pretend to send enquiries", () => {
     expect(JOURNEY.map((step) => step.id)).toEqual(["inquiry", "booking", "payment", "records"]);
-    expect(CONTACT_EMAIL).toBeNull();
+    expect(CONTACT_EMAIL).toBe("info@bykira.co.uk");
   });
 });

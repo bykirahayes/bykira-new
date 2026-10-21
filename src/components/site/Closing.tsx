@@ -1,5 +1,6 @@
 import { ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 import { Annotation, Eyebrow, Reveal, Star, Wordmark, useAudit } from "./primitives";
 
@@ -15,7 +16,7 @@ export function About() {
             ByKira designs <em className="text-lilac">the useful bits</em> first.
           </h2>
           <div className="mt-8 grid gap-6 text-muted-foreground md:grid-cols-2">
-            <p>We're a small digital studio. We build websites and tidy up the workflows behind them, but only once we understand how the work really moves.</p>
+            <p>ByKira is an independent sole-trader brand focused on thoughtful websites and tidier workflows. The aim is to understand how work moves before choosing what to build.</p>
             <p>That means drawing the system before choosing the software. Sometimes the answer is a new site. Sometimes it's a better form and one automation. We'll tell you which.</p>
           </div>
         </Reveal>
@@ -67,7 +68,8 @@ export function EndCTA() {
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <Wordmark className="text-5xl md:text-7xl" />
-            <p className="mt-3 max-w-sm text-sm text-muted-foreground">Websites and workflow improvements for service businesses.</p>
+            <p className="mt-3 max-w-sm text-sm text-muted-foreground">Independent sole-trader brand · Websites and workflow improvements.</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-lilac underline underline-offset-4 hover:text-foreground">{CONTACT_EMAIL}</a>
           </div>
           <nav aria-label="Footer">
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">

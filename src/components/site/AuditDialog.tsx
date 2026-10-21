@@ -79,7 +79,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
         ) : (
           <div className="space-y-4">
             {CONTACT_EMAIL ? (
-              <p className="text-sm text-muted-foreground">Your request is ready. Open it in your email app to send it.</p>
+              <p role="status" className="text-sm text-muted-foreground">No enquiry has been sent. Your message is ready for <strong className="text-foreground">{CONTACT_EMAIL}</strong>. Select <strong className="text-foreground">Open email</strong>, review the draft, then press Send in your email app. Email delivery has not been independently verified.</p>
             ) : (
               <div role="status" className="flex gap-3 rounded-xl border border-leak/30 bg-leak/10 p-4 text-sm">
                 <Info className="mt-0.5 h-4 w-4 shrink-0 text-leak" />
@@ -91,7 +91,7 @@ export function AuditDialog({ open, onOpenChange }: { open: boolean; onOpenChang
               <Button variant="line" size="xl" className="flex-1" onClick={copy}><Copy /> Copy enquiry</Button>
               {CONTACT_EMAIL && (
                 <Button variant="pill" size="xl" className="flex-1" asChild>
-                  <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Free operations audit")}&body=${encodeURIComponent(ready)}`}><Mail /> Open email</a>
+                  <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Free operations audit")}&body=${encodeURIComponent(ready)}`}><Mail /> Open email to send</a>
                 </Button>
               )}
             </div>
