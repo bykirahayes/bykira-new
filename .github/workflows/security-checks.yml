@@ -1,0 +1,46 @@
+name: Security checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Dependency and application checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check known dependency vulnerabilities
+        run: npm audit --audit-level=moderate
+      - name: Check TypeScript
+        run: npm run typecheck
+      - name: Run tests
+        run: npm test
+      - name: Check legal content integrity
+        run: npm run legal:check
+      - name: Lint source
+        run: npm run lint
+      - name: Verify production build
+        run: npm run build
+        env:
+          CF_PAGES: "1"
+          VITE_CALENDLY_URL: ${{ vars.VITE_CALENDLY_URL }}
