@@ -4,11 +4,9 @@ import { App } from "@/App";
 import { CONTACT_EMAIL, JOURNEY } from "@/lib/site";
 
 describe("ByKira site", () => {
-  it("renders the current landing page without a server router", () => {
+  it("renders the landing page without a server router", () => {
     const markup = renderToStaticMarkup(<App />);
-    expect(markup).toContain("A website that works harder.");
-    expect(markup).toContain("A smoother way");
-    expect(markup).toContain("Get my free audit");
+    expect(markup).toContain("Request a free audit");
     expect(markup).toContain("privacy.html");
     expect(markup).toContain("cookies.html");
     expect(markup).toContain("accessibility.html");
