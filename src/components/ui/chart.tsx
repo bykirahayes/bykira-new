@@ -40,7 +40,8 @@ const ChartContainer = React.forwardRef<
   }
 >(({ id, className, children, config, ...props }, ref) => {
   const uniqueId = React.useId();
-  const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
+  const safeId = typeof id === "string" && /^[a-zA-Z0-9_-]+$/.test(id) ? id : uniqueId.replace(/[^a-zA-Z0-9_-]/g, "");
+  const chartId = `chart-${safeId}`;
 
   return (
     <ChartContext.Provider value={{ config }}>
@@ -62,7 +63,15 @@ const ChartContainer = React.forwardRef<
 ChartContainer.displayName = "Chart";
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
-  const colorConfig = Object.entries(config).filter(([, config]) => config.theme || config.color);
+  // This string is emitted into a style element. Validate keys and values before
+  // generating CSS so caller-provided chart config cannot inject arbitrary rules.
+  const safeKey = (key: string) => /^[a-zA-Z0-9_-]+$/.test(key);
+  const safeColor = (value: unknown): value is string =>
+    typeof value === "string" &&
+    /^(#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([0-9.% ,/+-]+\)|var\(--[a-z0-9_-]+\)|[a-z]{1,20})$/i.test(value.trim());
+  const colorConfig = Object.entries(config).filter(([key, item]) =>
+    safeKey(key) && (safeColor(item.color) || (item.theme && Object.values(item.theme).some(safeColor)))
+  );
 
   if (!colorConfig.length) {
     return null;
@@ -78,7 +87,7 @@ ${prefix} [data-chart=${id}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
     const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
-    return color ? `  --color-${key}: ${color};` : null;
+    return color && safeKey(key) && safeColor(color) ? `  --color-${key}: ${color.trim()};` : null;
   })
   .join("\n")}
 }
