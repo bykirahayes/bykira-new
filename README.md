@@ -55,3 +55,10 @@ Read [UK_COMPLIANCE_REVIEW.md](UK_COMPLIANCE_REVIEW.md). The published legal pag
 ## Hosting limitations
 
 GitHub Pages is static hosting: it cannot run Node, API routes, a database or email sending. If future features need backend services, connect a separately hosted provider and update the privacy and security review before collecting personal information.
+
+
+## Cloudflare Pages
+
+Cloudflare Pages deployment settings and the production security checklist are documented in [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md). Use Node.js 22, build command `npm ci && npm run typecheck && npm test && npm run legal:check && npm run build`, and output directory `dist`. Cloudflare Pages builds automatically use the domain-root asset path. The `public/_headers` file configures response security headers for static assets.
+
+Before moving the custom domain, create the Pages project, configure `VITE_CALENDLY_URL`, verify preview response headers and links, and preserve existing email-related DNS records. The repository's existing GitHub Pages workflow remains in place until the Cloudflare production domain is confirmed.

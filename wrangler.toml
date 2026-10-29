@@ -1,0 +1,5 @@
+# Configuration for deploying the static Vite build to Cloudflare Pages.
+# In the Cloudflare dashboard, set the build output directory to "dist".
+name = "bykira"
+compatibility_date = "2026-10-29"
+pages_build_output_dir = "./dist"
