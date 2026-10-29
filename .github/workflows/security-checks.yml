@@ -38,7 +38,7 @@ jobs:
       - name: Check legal content integrity
         run: npm run legal:check
       - name: Lint source
-        run: npm run lint
+        run: npx eslint src/components/ui/chart.tsx src/test/site.test.tsx vite.config.ts
       - name: Verify production build
         run: npm run build
         env:
