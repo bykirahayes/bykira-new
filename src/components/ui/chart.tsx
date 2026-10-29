@@ -71,7 +71,7 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const safeKey = (key: string) => /^[a-zA-Z0-9_-]+$/.test(key);
   const safeColor = (value: unknown): value is string =>
     typeof value === "string" &&
-    /^(#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([0-9.% ,/+-]+\)|var\(--[a-z0-9_-]+\)|[a-z]{1,20})$/i.test(
+    /^(#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([0-9.% ,/+-]+\)|(?:hsl|hsla)\(var\(--[a-z0-9_-]+\)\)|var\(--[a-z0-9_-]+\)|[a-z]{1,20})$/i.test(
       value.trim(),
     );
   const colorConfig = Object.entries(config).filter(
